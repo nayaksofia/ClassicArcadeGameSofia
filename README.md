@@ -10,7 +10,7 @@
 
 ## Game To Play 
 
-[Click Here]()
+[Click Here](https://nayaksofia.github.io/ClassicArcadeGameSofia/)
 
 
 ## External Resources
