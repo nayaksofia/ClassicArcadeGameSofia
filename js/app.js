@@ -10,8 +10,8 @@ var Enemy = function (x, y, speed) {
 };
 
 // Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function (dt) {
+// Parameter: dt, a time delta between ticks and player object should be pass as a parameter, because of JavaScript OOP encapsulation block
+Enemy.prototype.update = function (dt, player) {
 
     // Multiplies the speed by the dt parameter on the x axis
     this.x += this.speed * dt;
@@ -60,25 +60,28 @@ Player.prototype.render = function () {
 // Allows the user to use the arrow keys to jump from tile to tile
 Player.prototype.handleInput = function (keyPress) {
 
-    // Left arrow key to move left on the x axis by 102 . Also enables user not to go off the game tiles on the left side
-    if (keyPress == 'left' && this.x > 0) {
-        this.x -= 102;
-    };
-
-    // Right arrow key to move right on the x axis by 102. Also enables user not to go off the game tiles on the right side
-    if (keyPress == 'right' && this.x < 405) {
-        this.x += 102;
-    };
-
-    // Up arrow key to move upwards on the y axis by 83. Also enables user not to go off the game tiles on the Up side
-    if (keyPress == 'up' && this.y > 0) {
-        this.y -= 83;
-    };
-
-    // Down arrow key to move downwards on the y axis by 83. Also enables user not to go off the game tiles on the bottom side
-    if (keyPress == 'down' && this.y < 405) {
-        this.y += 83;
-    };
+    switch(keyPress) {
+        case 'left':
+            if (this.x > 0) {
+                this.x -= 102
+            }
+            break;
+        case 'right':
+            if (this.x < 405) {
+                this.x += 102
+            }
+            break;
+        case 'up':
+            if (this.y > 0) {
+                this.y -= 83
+            }
+            break;
+        case 'down':
+            if(this.y < 405) {
+                this.y += 83
+            }
+            break;
+    }
 
     // Once the user reaches the water leve, the user is instantly reset to the starting position
     if (this.y < 0) {
